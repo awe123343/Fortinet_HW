@@ -1,0 +1,45 @@
+<div id="main">
+    <div id="funcBar">
+        <input class="funcItem" type="text" name="filter" id="searchBox" placeholder="Search" />
+
+        <div class="dropdown"  (mouseover)="toggleDropOnMouse(true)"  (mouseout)="toggleDropOnMouse(false)">
+            <button class="dropbtn">Order By</button>
+            <button class="dpdarr" (click)="toggleDropIcon()"><fa-icon [icon]="showDropdown ? downArrayIcon : upArrowIcon"></fa-icon></button>
+            <div class="dropdown-content" [ngStyle]="{display : getDisplayState()}">
+                <a (click)="onSortChange1('name')">Name<fa-icon [icon]="upArrowIcon"></fa-icon></a>
+                <a (click)="onSortChange1('sevtopdown')">Severity<fa-icon [icon]="downArrayIcon"></fa-icon></a>
+                <a (click)="onSortChange1('sevbottomup')">Severity<fa-icon [icon]="upArrowIcon"></fa-icon></a>
+                <a (click)="onSortChange1('cat')">Category<fa-icon [icon]="upArrowIcon"></fa-icon></a>
+            </div>
+        </div>
+
+        <button class="funcItem" type="submit" id="filterButton">
+            <fa-icon [icon]="barIcon"></fa-icon> Filter
+        </button>
+    </div>
+
+    <div id="table">
+        <table>
+            <tr *ngFor="let tableRow of tableContent" class="table_row" valign="middle">
+                <td>
+                    <!-- <span [ngStyle]="{fontWeight: bold, color : getSevColor(tableRow.severity)}">|</span>{{tableRow.name}}<br /> -->
+                    <div class="rowName" [ngStyle]="{borderLeftColor : getSevColor(tableRow.severity)}">
+                        {{tableRow.name}}</div>
+                    <div class="rowType">{{tableRow.type}}</div>
+                </td>
+                <td class="rowDescp">{{tableRow.description}}</td>
+                <td style="width: 3em; padding-left: 1em;">
+                    <button class="rowButton" type="button">
+                        <fa-icon [icon]="toggleIcon"></fa-icon>
+                    </button>
+                </td>
+                <td style="width: 3em; padding-left: 1em;">
+                    <button class="rowButton" type="button">
+                        <fa-icon [icon]="arrowIcon"></fa-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
